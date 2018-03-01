@@ -6,6 +6,14 @@ import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+
+import {StoreModule} from '@ngrx/store';
+import { counterReducer } from './store/counters.reducer';
+
+// export const reducers: ActionReducerMap<any> = {
+// count: counterReducer.counterReducer
+// };
+
 @NgModule({
   declarations: [
     AppComponent
@@ -14,7 +22,8 @@ import { AppComponent } from './app.component';
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    StoreModule.forRoot({ count: counterReducer })
   ],
   providers: [],
   bootstrap: [AppComponent]
