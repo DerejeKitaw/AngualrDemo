@@ -26,7 +26,7 @@ export class ProjectService {
   getProject(id: number): Observable<IProject> {
       if (id === 0) {
           return Observable.of(this.initializeProject());
-      };
+      }
       const url = `${this.baseUrl}/${id}`;
       return this.http.get(url)
           .map(this.extractData)
@@ -35,8 +35,8 @@ export class ProjectService {
   }
 
   deleteProject(id: number): Observable<Response> {
-      let headers = new Headers({ 'Content-Type': 'application/json' });
-      let options = new RequestOptions({ headers: headers });
+      const headers = new Headers({ 'Content-Type': 'application/json' });
+      const options = new RequestOptions({ headers: headers });
 
       const url = `${this.baseUrl}/${id}`;
       return this.http.delete(url, options)
@@ -45,10 +45,10 @@ export class ProjectService {
   }
 
   saveProject(project: IProject): Observable<IProject> {
-      let headers = new Headers({ 'Content-Type': 'application/json' });
-      let options = new RequestOptions({ headers: headers });
+      const headers = new Headers({ 'Content-Type': 'application/json' });
+      const options = new RequestOptions({ headers: headers });
 
-      if (project.id === 0) {
+      if (project.id === '0') {
           return this.createProject(project, options);
       }
       return this.updateProject(project, options);
@@ -71,7 +71,7 @@ export class ProjectService {
   }
 
   private extractData(response: Response) {
-      let body = response.json();
+      const body = response.json();
       return body.data || {};
   }
 
@@ -84,17 +84,18 @@ export class ProjectService {
 
   initializeProject(): IProject {
       // Return an initialized object
-      return {
-          id: 0,
-          projectName: null,
-          projectCode: null,
-          category: null,
-          tags: [],
-          releaseDate: null,
-          price: null,
-          description: null,
-          starRating: null,
-          imageUrl: null
-      };
+      return;
+    //   return {
+    //       id: 0,
+    //       projectName: null,
+    //       projectCode: null,
+    //       category: null,
+    //       tags: [],
+    //       releaseDate: null,
+    //       price: null,
+    //       description: null,
+    //       starRating: null,
+    //       imageUrl: null
+    //   };
   }
 }
